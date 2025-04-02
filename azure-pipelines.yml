@@ -1,0 +1,35 @@
+trigger:
+
+     - main
+
+
+pool:
+
+      vmImage: 'ubuntu-latest'
+
+
+steps:
+
+     - task: UsePythonVersion@0
+
+        inputs:
+
+             versionSpec: '3.x'
+
+
+     - script: pip install -r requirements.txt
+
+   displayName: 'Install dependencies'
+
+
+ - task: AzureWebApp@1
+
+   inputs:
+
+         azureSubscription: '0bfb5402-64f1-4a98-8c46-0c25c3790fed'
+
+         appType: 'webAppLinux'
+
+         appName: 'SuperDuperApp'
+
+         package: '.'
